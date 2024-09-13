@@ -1,22 +1,34 @@
 package hh.bookstore.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Book {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String title;
     private String author;
     private int publicationYear;
     private String isbn;
     private double price;
 
-    public Book() {
-        this.title = null;
-        this.author = null;
-        this.publicationYear = 0;
-        this.isbn = null;
-        this.price = 0;
-    }
+    protected Book() {
+    } // sama kuin alla?
+
+    // public Book() {
+    // this.title = null;
+    // this.author = null;
+    // this.publicationYear = 0;
+    // this.isbn = null;
+    // this.price = 0;
+    // }
 
     public Book(String title, String author, int publicationYear, String isbn, double price) {
+        super();
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
