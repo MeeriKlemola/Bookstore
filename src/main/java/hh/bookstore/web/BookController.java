@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import hh.bookstore.domain.BookRepository;
 
@@ -21,7 +20,8 @@ public class BookController {
         return "index"; // index.html
     }
 
-    @RequestMapping(value = "/booklist")
+    // http://localhost:8080/booklist
+    @GetMapping(value = "/booklist")
     public String getBookList(Model model) {
         model.addAttribute("books", repository.findAll());
         return "booklist"; //booklist.html
