@@ -18,7 +18,7 @@ public class Book {
     private String isbn;
     private double price;
 
-    protected Book() {
+    public Book() {
     } // sama kuin alla?
 
     // public Book() {

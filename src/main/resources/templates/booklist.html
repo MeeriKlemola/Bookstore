@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book list</title>
+    <title>Booklist</title>
 </head>
 
 <body>
@@ -32,6 +32,7 @@
             <td th:text="${book.publicationYear}" class="padding"> </td>
         </tr>
     </table>
+    <p><a th:href="@{/addbook}">Add book</a></p>
 
 </body>
 
