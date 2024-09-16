@@ -10,7 +10,7 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     
     private String title;
     private String author;
@@ -19,15 +19,7 @@ public class Book {
     private double price;
 
     public Book() {
-    } // sama kuin alla?
-
-    // public Book() {
-    // this.title = null;
-    // this.author = null;
-    // this.publicationYear = 0;
-    // this.isbn = null;
-    // this.price = 0;
-    // }
+    } 
 
     public Book(String title, String author, int publicationYear, String isbn, double price) {
         super();

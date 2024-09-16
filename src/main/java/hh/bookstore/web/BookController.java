@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import hh.bookstore.domain.Book;
 import hh.bookstore.domain.BookRepository;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class BookController {
@@ -53,13 +55,21 @@ public class BookController {
         return "redirect:/booklist"; // booklist.html
     }
 
-    // @RequestMapping(value = "/editbook/{id}", method = RequestMethod.GET)
-    // public String editBook(@PathVariable("id") Long bookId, Model model) {
+    @GetMapping("/edit/{id}")
+    public String editForm(@PathVariable Long id, Model model) {
+        Book book = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid book Id:" + id));
+        // miksi tämä ei toimi ilman orElseä????
 
-    // repository.findAllById(bookId)
+        model.addAttribute("book", book);
 
-    // model.addAttribute("book", new Book());
-    // return ""; //
-    // }
+        return "editbook"; // editbook.html
+    }
+
+    @PostMapping("/update")
+    public String updateBook(@ModelAttribute("book") Book book) {
+        repository.save(book);
+
+        return "redirect:/booklist";
+    }
 
 }
