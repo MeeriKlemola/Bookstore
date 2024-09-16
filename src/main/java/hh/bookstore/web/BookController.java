@@ -22,7 +22,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "/booklist")
-    public String studentList(Model model) {
+    public String getBookList(Model model) {
         model.addAttribute("books", repository.findAll());
         return "booklist"; //booklist.html
     }
