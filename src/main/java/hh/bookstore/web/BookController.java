@@ -43,14 +43,23 @@ public class BookController {
     @PostMapping("/save")
     public String saveBook(@ModelAttribute Book book) {
         repository.save(book);
-        return "redirect:/booklist"; //booklist.html
+        return "redirect:/booklist"; // booklist.html
     }
 
     // poistaa id:llä kirjan
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("id") Long bookId, Model model) {
         repository.deleteById(bookId);
-        return "redirect:/booklist"; //booklist.html
+        return "redirect:/booklist"; // booklist.html
     }
+
+    // @RequestMapping(value = "/editbook/{id}", method = RequestMethod.GET)
+    // public String editBook(@PathVariable("id") Long bookId, Model model) {
+
+    // repository.findAllById(bookId)
+
+    // model.addAttribute("book", new Book());
+    // return ""; //
+    // }
 
 }

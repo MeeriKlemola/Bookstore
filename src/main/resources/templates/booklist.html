@@ -31,6 +31,7 @@
             <td th:text="${book.isbn}" class="padding"> </td>
             <td th:text="${book.publicationYear}" class="padding"> </td>
            <td> <a th:href="@{/delete/{id}(id=${book.id})}">Delete</a> </td>
+           <td> <a th:href="@{/edit/{id}(id=${book.id})}">Edit</a> </td>
         </tr>
     </table>
     <p><a th:href="@{/addbook}">Add book</a></p>
