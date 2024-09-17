@@ -29,6 +29,7 @@ public class BookController {
     @GetMapping(value = "/booklist")
     public String getBookList(Model model) {
         model.addAttribute("books", repository.findAll());
+
         return "booklist"; // booklist.html
     }
 
@@ -36,13 +37,15 @@ public class BookController {
     @GetMapping(value = "/addbook")
     public String addBook(Model model) {
         model.addAttribute("book", new Book());
+
         return "addbook"; // addbook.html
     }
 
-    // tallentaa lomakkeen tiedot
+    // tallentaa lomakkeen tiedot sekä lisäyksessä, että päivittäessä
     @PostMapping("/save")
     public String saveBook(@ModelAttribute Book book) {
         repository.save(book);
+
         return "redirect:/booklist"; // booklist.html
     }
 
@@ -50,24 +53,15 @@ public class BookController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("id") Long bookId, Model model) {
         repository.deleteById(bookId);
-        return "redirect:/booklist"; // booklist.html
+
+        return "redirect:../booklist"; // booklist.html
     }
 
     @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable Long id, Model model) {
-        Book book = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid book Id:" + id));
-        // miksi tämä ei toimi ilman orElseä????
-
-        model.addAttribute("book", book);
+    public String editForm(@PathVariable("id") Long bookId, Model model) {
+        model.addAttribute("book", repository.findById(bookId));
 
         return "editbook"; // editbook.html
-    }
-
-    @PostMapping("/update")
-    public String updateBook(@ModelAttribute("book") Book book) {
-        repository.save(book);
-
-        return "redirect:/booklist";
     }
 
 }
