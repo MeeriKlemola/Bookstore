@@ -25,20 +25,18 @@ public class BookstoreApplication {
 	public CommandLineRunner fetchData(CategoryRepository categoryRepository, BookRepository repository) {
 		return (args) -> {
 			log.info("save a couple of categories");
-			categoryRepository.save(new Category("Horror"));
-			categoryRepository.save(new Category("Scifi"));
-			categoryRepository.save(new Category("Comic"));
+			Category category1 = new Category("Horror");
+			categoryRepository.save(category1);
+			Category category2 = new Category("Scifi");
+			categoryRepository.save(category2);
+			Category category3 = new Category("Comic");
+			categoryRepository.save(category3);
 
 			log.info("save a couple of books");
-			repository.save(new Book("Misery", "Meeri Klemola", 2024, "123abc", 24.70));
-			repository.save(new Book("Pain", "Meeri Klemola", 2025, "123abb", 3.00));
-			
-			log.info("fetch all categories");
-			for (Category category : categoryRepository.findAll()) {
-				log.info(category.toString());
-			}
-			
-			log.info("fetch all books");
+			repository.save(new Book("Misery", "Meeri Klemola", 2024, "123abc", 24.70, category1));
+			repository.save(new Book("Pain", "Meeri Klemola", 2025, "123abb", 3.00, category3));
+
+			log.info("fetch all students");
 			for (Book book : repository.findAll()) {
 				log.info(book.toString());
 			}

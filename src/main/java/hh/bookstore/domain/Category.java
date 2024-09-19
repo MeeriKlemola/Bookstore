@@ -1,9 +1,12 @@
 package hh.bookstore.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Category {
@@ -13,12 +16,14 @@ public class Category {
     private long categoryId;
     private String name;
 
+    @OneToMany(mappedBy = "category") 
+    private List<Book> bookss;
+
+    public Category() {}
+
     public Category(String name) {
         super();
         this.name = name;
-    }
-
-    public Category() {
     }
 
     public long getCategoryId() {
@@ -37,9 +42,17 @@ public class Category {
         this.name = name;
     }
 
+    public List<Book> getBookss() {
+        return bookss;
+    }
+
+    public void setBookss(List<Book> bookss) {
+        this.bookss = bookss;
+    }
+
     @Override
     public String toString() {
-        return "Category [categoryId=" + categoryId + ", name=" + name + "]";
+        return name;
     }
 
 }
