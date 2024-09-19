@@ -17,7 +17,7 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category") 
-    private List<Book> bookss;
+    private List<Book> books;
 
     public Category() {}
 
@@ -42,12 +42,12 @@ public class Category {
         this.name = name;
     }
 
-    public List<Book> getBookss() {
-        return bookss;
+    public List<Book> getBooks() {
+        return books;
     }
 
-    public void setBookss(List<Book> bookss) {
-        this.bookss = bookss;
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     @Override
