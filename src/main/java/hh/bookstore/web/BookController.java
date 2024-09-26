@@ -18,7 +18,7 @@ import hh.bookstore.domain.CategoryRepository;
 public class BookController {
 
     @Autowired
-    private BookRepository repository;
+    private BookRepository bookRepository;
 
     @Autowired
     private CategoryRepository categoryRepository;
@@ -32,7 +32,7 @@ public class BookController {
     // http://localhost:8080/booklist
     @GetMapping(value = "/booklist")
     public String getBookList(Model model) {
-        model.addAttribute("books", repository.findAll());
+        model.addAttribute("books", bookRepository.findAll());
 
         return "booklist"; // booklist.html
     }
@@ -49,7 +49,7 @@ public class BookController {
     // tallentaa lomakkeen tiedot sekä lisäyksessä, että päivittäessä
     @PostMapping("/save")
     public String saveBook(@ModelAttribute Book book) {
-        repository.save(book);
+        bookRepository.save(book);
 
         return "redirect:/booklist"; // booklist.html
     }
@@ -57,7 +57,7 @@ public class BookController {
     // poistaa id:llä kirjan
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("id") Long bookId, Model model) {
-        repository.deleteById(bookId);
+        bookRepository.deleteById(bookId);
 
         return "redirect:../booklist"; // booklist.html
     }
@@ -65,7 +65,7 @@ public class BookController {
     // editoi id:llä kirjaa
     @GetMapping("/edit/{id}")
     public String editForm(@PathVariable("id") Long bookId, Model model) {
-        model.addAttribute("book", repository.findById(bookId));
+        model.addAttribute("book", bookRepository.findById(bookId));
 
         return "editbook"; // editbook.html
     }
