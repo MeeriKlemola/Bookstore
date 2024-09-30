@@ -51,7 +51,7 @@ public class BookController {
     public String saveBook(@ModelAttribute Book book) {
         bookRepository.save(book);
 
-        return "redirect:/booklist"; // booklist.html
+        return "redirect:/booklist";
     }
 
     // poistaa id:llä kirjan
