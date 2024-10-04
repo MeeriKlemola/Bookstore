@@ -36,7 +36,7 @@ public class BookstoreApplication {
 			repository.save(new Book("Misery", "Meeri Klemola", 2024, "123abc", 24.70, category1));
 			repository.save(new Book("Pain", "Meeri Klemola", 2025, "123abb", 3.00, category3));
 
-			log.info("fetch all students");
+			log.info("fetch all books");
 			for (Book book : repository.findAll()) {
 				log.info(book.toString());
 			}
