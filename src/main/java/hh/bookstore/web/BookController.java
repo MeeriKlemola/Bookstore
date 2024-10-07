@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import hh.bookstore.domain.Book;
 import hh.bookstore.domain.BookRepository;
 import hh.bookstore.domain.CategoryRepository;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @Controller
 public class BookController {
@@ -58,7 +56,7 @@ public class BookController {
     }
 
     // poistaa id:llä kirjan
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("id") Long bookId, Model model) {
         bookRepository.deleteById(bookId);
