@@ -1,6 +1,5 @@
 package hh.bookstore.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,17 +12,16 @@ import hh.bookstore.domain.AppUserRepository;
 
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
-    private final AppUserRepository repository;
+    private final AppUserRepository appUserRepository;
 
-    @Autowired
     public UserDetailServiceImpl(AppUserRepository userRepository) {
-        this.repository = userRepository;
+        this.appUserRepository = userRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {   
-    	AppUser curruser = repository.findByUsername(username);
+    	AppUser curruser = appUserRepository.findByUsername(username);
         UserDetails user = new User(username, curruser.getPasswordHash(), 
         		AuthorityUtils.createAuthorityList(curruser.getRole()));
         return user;
