@@ -28,6 +28,7 @@ public class WebSecurityConfig {
                                 .authorizeHttpRequests(authorize -> authorize
                                                 .requestMatchers(antMatcher("/css/**")).permitAll()
                                                 .requestMatchers(toH2Console()).permitAll()
+                                                .requestMatchers("/index").permitAll()
                                                 .anyRequest().authenticated())
                                 .csrf(csrf -> csrf
                                                 .ignoringRequestMatchers(toH2Console()))
